@@ -3,6 +3,24 @@
 Google Analytics gtag framework support for Elm.
 
 
+# Installation
+
+As this is a ports module, it cannot be installed with `elm
+install`. I suggest you use git submodules to install it. In the root of your project type:
+
+```
+git submodule add git@github.com:berenddeboer/gtag.git
+```
+
+Then in your `elm.json` make `source-directories` look like:
+
+```
+"source-directories": [
+  "src",
+  "gtag/src"
+]
+```
+
 # JavaScript initialisation
 
 Import in your `index.js` like:
