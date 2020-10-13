@@ -8,15 +8,15 @@ port module GTag exposing
     )
 
 
-import Json.Encode as Encode exposing (Value, bool, list, object, string)
+import Json.Encode exposing (Value, bool, list, object, string)
 
 
 type alias GParams = List ( String, Value )
 
 port gload : { measurementId : String, sendPageView : Bool } -> Cmd msg
-port gconfig : { measurementId : String, params : Encode.Value } -> Cmd msg
-port gevent : { eventName : String, params : Encode.Value } -> Cmd msg
-port gset : { keyValuePairs : Encode.Value } -> Cmd msg
+port gconfig : { measurementId : String, params : Value } -> Cmd msg
+port gevent : { eventName : String, params : Value } -> Cmd msg
+port gset : { keyValuePairs : Value } -> Cmd msg
 
 
 {-| Load Google Analytics gtag.
@@ -61,7 +61,7 @@ login =
 -}
 pageView : String -> Cmd msg
 pageView url =
-    event "page_view" [ ( "page_path", Encode.string url ) ]
+    event "page_view" [ ( "page_path", string url ) ]
 
 
 {-| Use this event to contextualize search operations. This event can
@@ -70,4 +70,4 @@ help you identify the most popular content in your app.
 -}
 search : String -> Cmd msg
 search searchTerm =
-    event "search" [ ( "search_term", Encode.string searchTerm ) ]
+    event "search" [ ( "search_term", string searchTerm ) ]
