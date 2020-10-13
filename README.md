@@ -28,6 +28,8 @@ can spend time initialising and loading your application.
 Your `init` should look something like:
 
 ```
+import GTag
+
 init : ( Model, Cmd Msg )
 init =
   ( model, GTag.load "GA_MEASUREMENT_ID" )
@@ -46,6 +48,8 @@ In your `update` send the new page to Google Analytics when you
 receive the `ChangedUrl` message for example:
 
 ```
+import GTag
+
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
 
