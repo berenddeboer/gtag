@@ -3,7 +3,7 @@
 Google Analytics gtag framework support for Elm.
 
 
-# Initialisation
+# JavaScript initialisation
 
 Import in your `index.js` like:
 
