@@ -32,6 +32,14 @@ const app = Elm.Main.init({node: document.getElementById("root")})
 GTag.init(app)
 ```
 
+It's safe to initialise `GTag.init` only for certain domains:
+
+```
+if (location.hostname === "www.example.com") {
+  GTag.init(app)
+}
+```
+
 
 # Usage
 
