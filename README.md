@@ -57,10 +57,9 @@ init =
 ## Telling Google Analytics about a new page view
 
 Single App Frameworks won't automatically send an update to Google
-Analytics when they are using fragment routing. There might also be
-other cases which the Google Analytics framework does not detect. By
-calling `GTag.pageView` you can tell Google Analytics exactly when
-your page is changed.
+Analytics. There might also be other cases which the Google Analytics
+framework does not detect. By calling `GTag.pageView` you can tell
+Google Analytics exactly when your page is changed.
 
 In your `update` send the new page to Google Analytics when you
 receive the `ChangedUrl` message for example:
