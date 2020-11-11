@@ -5,6 +5,9 @@ port module GTag exposing
     , login
     , pageView
     , search
+    , viewItem
+    , viewItemList
+    , customEvent
     )
 
 
@@ -71,3 +74,53 @@ help you identify the most popular content in your app.
 search : String -> Cmd msg
 search searchTerm =
     event "search" [ ( "search_term", string searchTerm ) ]
+
+
+{-| This event signifies that some content was shown to the user. Use
+this event to discover the most popular items viewed.
+
+See [view_item](https://developers.google.com/gtagjs/reference/event#view_item) for more details.
+-}
+viewItem : String -> String -> List (String, String ) -> Cmd msg
+viewItem id name other =
+    let
+        params =
+            ( "id", string id )
+            :: ( "name", string name )
+            :: List.map (\(key, value) -> (key, string value) ) other
+        items = [ ( "items", list object [ params ] ) ]
+    in
+    event "view_item" items
+
+
+{-| Log this event when the user has been presented with a list of
+items of a certain category.
+
+-}
+viewItemList : Cmd msg
+viewItemList =
+    event "view_item_list" []
+
+
+
+-- CUSTOM EVENTS
+
+customEvent : String -> Maybe String -> Maybe String -> Cmd msg
+customEvent action category label =
+    let
+        params =
+            ( case category of
+                Just c ->
+                    [ ( "event_category", string c ) ]
+                Nothing ->
+                    []
+            )
+            ++
+            ( case label of
+                Just l ->
+                    [ ( "event_label", string l ) ]
+                Nothing ->
+                    []
+            )
+    in
+    event action params
