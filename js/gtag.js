@@ -16,7 +16,7 @@ const GTag = {
       return
 
     app.ports.gload && app.ports.gload.subscribe(function(message) {
-      const script = document.createElement('script');
+      const script = document.createElement('script')
       script.src = "https://www.googletagmanager.com/gtag/js?id=" + message.measurementId
       document.body.append(script)
       gtag('config', message.measurementId, { 'send_page_view': message.sendPageView })
