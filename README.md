@@ -32,10 +32,10 @@ const app = Elm.Main.init({node: document.getElementById("root")})
 GTag.init(app)
 ```
 
-It's safe to initialise `GTag.init` only for certain domains:
+It's safe to initialise GTag for certain domains only:
 
 ```
-if (location.hostname === "www.example.com") {
+if (window.location.hostname === "www.example.com") {
   GTag.init(app)
 }
 ```
@@ -67,7 +67,7 @@ init =
 Single App Frameworks won't automatically send an update to Google
 Analytics. There might also be other cases which the Google Analytics
 framework does not detect. By calling `GTag.pageView` you can tell
-Google Analytics exactly when your page is changed.
+Google Analytics exactly when your page has changed.
 
 In your `update` send the new page to Google Analytics when you
 receive the `ChangedUrl` message for example:
