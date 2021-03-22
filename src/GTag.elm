@@ -11,7 +11,7 @@ port module GTag exposing
     )
 
 
-import Json.Encode exposing (Value, bool, list, object, string)
+import Json.Encode exposing (Value, list, object, string)
 
 
 type alias GParams = List ( String, Value )
